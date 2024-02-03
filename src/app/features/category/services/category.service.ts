@@ -1,9 +1,10 @@
+import { Category } from './../models/CategoryList.model';
 import { Injectable } from '@angular/core';
 import { AddCategoryRequest} from '../models/add-category-request.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { Category } from '../models/CategoryList.model';
+import { UpdateCategoryRequest } from '../models/update-category-request.model';
 
 
 @Injectable({
@@ -23,5 +24,8 @@ export class CategoryService {
 
   getCategoryById(id: string): Observable<Category>{
     return this.http.get<Category>(`${environment.apiBaseUrl}/api/Categories/${id}`);
+  }
+  updateCategory(id: string, updateCategoryRequest: UpdateCategoryRequest): Observable<Category>{
+  return this.http.put<Category>(`${environment.apiBaseUrl}/api/Categories/${id}`, updateCategoryRequest);
   }
 }
