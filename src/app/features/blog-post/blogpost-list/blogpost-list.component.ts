@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BlogPostService } from '../services/blog-post.service';
 import { Subscription } from 'rxjs';
+import { BlogPost } from '../models/blog-post.model';
 
 @Component({
   selector: 'app-blogpost-list',
@@ -8,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./blogpost-list.component.css']
 })
 export class BlogpostListComponent  implements OnInit,OnDestroy {
-  blogpost[]: Blogpost;
+  blogposts: BlogPost[] = [];
   blogPostSubscription ?: Subscription;
   constructor(private services : BlogPostService){
 
@@ -18,10 +19,8 @@ export class BlogpostListComponent  implements OnInit,OnDestroy {
   }
   ngOnInit(): void {
     this.blogPostSubscription = this.services.getAllBlogPosts().subscribe({
-      next: (response)=>{
-        this.blogpost = {
-
-        }
+      next: (response: BlogPost[])=>{
+        this.blogposts = response;
       }
     })
   }
