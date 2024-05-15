@@ -13,6 +13,7 @@
                     <th>Short Description</th>
                     <th>Is Visible?</th>
                     <th>Categories</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,9 @@
                             <span class="badge text-bg-secondary me-2">{{category.name}}</span>
                         </span>
                         
+                    </td>
+                    <td>
+                        <a class="btn btn-light" [routerLink]="['/admin/blogposts',blogpost.id]">Edit</a>
                     </td>
                 </tr>
             </tbody>
